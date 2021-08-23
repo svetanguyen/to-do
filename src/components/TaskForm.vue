@@ -1,17 +1,17 @@
 <template>
   <div class="task-form">
     <form @submit.prevent="submitTask">
-      <input class="full-width" type="text" required v-model="title" id="Title" placeholder="Add new tasks...">
-      <label for="Description">Description</label>
-      <textarea class="full-width" name="Description" v-model="description" id="Description"></textarea>
+      <input class="full-width" type="text" required v-model="title" :id="titleId" placeholder="Add new tasks...">
+      <label :for="descriptionId">Description</label>
+      <textarea class="full-width" name="Description" v-model="description" :id="descriptionId"></textarea>
       <div class="date-wrapper half-width">
-        <label for="DueDate">Due date</label>        
-       <input :show-current="false" type="date" id="dateId" name="DueDate" v-model="date"
+        <label :for="dateId">Due date</label>        
+       <input :show-current="false" type="date" :id="dateId" name="DueDate" v-model="date"
        :min="currentDate" >
       </div>
       <div class="priority-wrapper half-width">
-        <label for="Priority">Priority</label>
-        <select v-model="priority" @change="selectedValue" class="half-width" name="Priority" id="Priority">
+        <label :for="priorityId">Priority</label>
+        <select v-model="priority" @change="selectedValue" class="half-width" name="Priority" :id="priorityId">
           <option value="low">Low</option>
           <option value="normal" selected>Normal</option>
           <option value="high">High</option>
@@ -43,6 +43,16 @@ export default {
     themeColor() {
       return this.$vuetify.theme.themes
     },
+    descriptionId() {
+      return `Description--${this.id}`
+    },
+    priorityId() {
+      return `Priority--${this.id}`
+    },
+     titleId() {
+      return `Title--${this.id}`
+    },
+    
     currentDate() {
       var today = new Date();
       var dd = today.getDate();

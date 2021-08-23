@@ -2,16 +2,20 @@
   <div class="to-do-wrapper">
    <div class="new-task-wrapper column">
      <h2>New task</h2>
-    <TaskForm :submit="add" />
+    <TaskForm :submit="add" id="newTask" />
    </div>
    <div class="to-do-list column">
+     <div class="header">
      <h2>To do list</h2>
-     <input type="text" class="search full-width" v-model="search" placeholder="Search...">
-     <div class="tasks-wrapper">
-       <div class="task-card" v-for="(task, index) in tasks" :key="index">
-         <TaskCard :id="index" :task="task" />
-       </div>
+      <input type="text" class="search full-width" v-model="search" placeholder="Search...">
+      <div class="tasks-wrapper">
+        <div class="task-card" v-for="(task, index) in tasks" :key="index">
+          <TaskCard :id="index" :task="task" />
+        </div>
+      </div>
      </div>
+     
+     <BulkActions />
    </div>
   </div>
 </template>
@@ -19,6 +23,7 @@
 <script>
 import TaskForm from './TaskForm.vue'
 import TaskCard from './TaskCard.vue'
+import BulkActions from './BulkAction.vue'
 export default {
   name: 'To-do',
   data() {
@@ -31,7 +36,8 @@ export default {
   },
   components: {
     TaskForm,
-    TaskCard
+    TaskCard,
+    BulkActions
   },
   computed: {
     tasks() {
@@ -70,6 +76,11 @@ li {
 }
 a {
   color: #42b983;
+}
+.to-do-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .search {
    color: #000000;
