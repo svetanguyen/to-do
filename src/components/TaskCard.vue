@@ -11,7 +11,7 @@
      
       <div class="cta-buttons">
           <button @click="showDetails">Detail</button>
-          <button>Remove</button>
+          <button @click="removeTask">Remove</button>
       </div>
         
   </div>
@@ -49,6 +49,9 @@ export default {
         checkCard: function() {
             this.task.checked = !this.task.checked
             console.log('this.task.checked', this.task.checked)
+        },
+        removeTask: function() {
+            this.$store.state.tasks.splice(this.id, 1)
         }
     }
 }
