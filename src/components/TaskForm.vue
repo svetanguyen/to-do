@@ -175,6 +175,9 @@ input {
   .v-date-picker-table .v-btn.v-btn--active {
     color: blue;
   }
+  form {
+    padding: 30px;
+  }
 }
   
 </style>
