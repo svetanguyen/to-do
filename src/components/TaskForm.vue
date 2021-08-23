@@ -7,15 +7,15 @@
       <div class="date-wrapper half-width">
         <label for="DueDate">Due date</label>
         <input type="date" id="DueDate" name="DueDate"
-       v-model="currentDate"
+       v-model="dueDate"
        :min="currentDate">
       </div>
       <div class="priority-wrapper half-width">
         <label for="Priority">Priority</label>
-        <select class="half-width" name="Priority" id="Priority">
-          <option value="Low">Low</option>
-          <option value="Normal" selected>Normal</option>
-          <option value="High">High</option>
+        <select v-model="selected" class="half-width" name="Priority" id="Priority">
+          <option value="low">Low</option>
+          <option value="normal" selected>Normal</option>
+          <option value="high">High</option>
         </select>
       </div>
       <button class="full-width" type="submit">{{ submit }}</button>
@@ -29,11 +29,12 @@ export default {
   name: 'Task form',
   data() {
     return {
-      title: this.taskData.title ? this.taskData.title : '',
-      description: this.taskData ? this.taskData.description : ''
+      title: this.task.title ? this.task.title : '',
+      description: this.task ? this.task.description : '',
+      dueDate: this.currentDate
     }
   },
-  props: ['submit', 'taskData'],
+  props: ['submit', 'task'],
   computed: {   
     currentDate() {
       var today = new Date();
@@ -86,6 +87,7 @@ export default {
     font-size: 12px;
     border: 1px solid #000000;
     height: 125px;
+    padding: 10px
   }
   form {
     text-align: left;
