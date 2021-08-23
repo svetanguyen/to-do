@@ -1,0 +1,114 @@
+<template>
+<div class="task-item">
+    <div class="task-content">
+      <div class="name-wrapper">
+        <input :id="inputId" type="checkbox" v-model="task.checked">
+        <label :for="inputId">
+            <span v-show="task.checked">✔</span>
+        </label>
+        <h4>{{ task.title }}</h4>
+      </div>
+     
+      <div class="cta-buttons">
+          <button @click="showDetails">Detail</button>
+          <button>Remove</button>
+      </div>
+        
+  </div>
+  <div class="form-wrapper">
+    <TaskForm v-show="detailsShown" :task="task" :submit="update" />
+
+  </div>
+</div>
+  
+</template>
+
+<script>
+import TaskForm from './TaskForm.vue';
+export default {
+    name: 'Task Card',
+    props: ['task', 'id'],
+    components: {
+        TaskForm
+    },
+    data() {
+        return {
+           update: 'update',
+           detailsShown: false
+        }
+    },
+    computed: {
+        inputId() {
+            return `Checked--${this.id}`
+        }
+    },
+    methods: {
+        showDetails: function() {
+            this.detailsShown = !this.detailsShown
+        }
+    }
+}
+</script>
+
+<style scoped lang="scss">
+    input {
+        display: none;        
+    }
+    label {
+        width: 20px;
+        height: 20px;
+        border: 1px solid #000;
+        position: relative;
+        cursor: pointer;
+        display: block;
+        margin-right: 10px;
+        span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+    button {
+        color: #FFFFFF;
+        font-family: Arimo;
+        font-size: 12px;
+        font-weight: normal;
+        font-style: normal;
+        width: 93px;
+        cursor: pointer;
+        height: 27px;
+        margin-right: 20px;
+        background: #00BCD4;
+        border: none;
+        border-radius: 10px;
+        &:last-child {
+            background: #D9534F;
+            margin: 0;
+        }
+    }
+    .task-content {
+        background: #FFFFFF;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        border: 1px solid #000000;
+        border-radius: 0px; 
+        justify-content: space-between;
+    }
+    .name-wrapper {
+        display: flex;
+        align-items: center;
+    }
+    h4 {
+        font-weight: 400;
+        font-family: 'Source Sans Pro';
+        font-size: 16px;
+        margin: 0;
+    }
+    .form-wrapper {
+        padding: 30px;
+        border: 1px solid #000;
+        border-top: 0;
+    }
+</style>
