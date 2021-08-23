@@ -49,16 +49,7 @@ export default {
   },
   methods: {
     searchTasks: function() {
-      this.tasks = this.$store.state.tasks.filter(item => item.title.toLowerCase().includes(this.search.toLowerCase()))
-      .sort(function(a, b) {
-        if (Date.parse(a.date) > Date.parse(b.date)) {
-          return 1;
-        }
-        if (Date.parse(a.date) < Date.parse(b.date)) {
-          return -11;
-        }
-        return 0
-      })
+      this.tasks = this.$store.state.tasks.filter(item => item.title.toLowerCase().includes(this.search.toLowerCase()))     
     },
     toggleAccordeonOne: function() {
       this.openAccordeonOne = !this.openAccordeonOne
