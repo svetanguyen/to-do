@@ -6,23 +6,39 @@
    </div>
    <div class="to-do-list column">
      <h2>To do list</h2>
+     <input type="text" class="search full-width" v-model="search" placeholder="Search...">
+     <div class="tasks-wrapper">
+       <div class="task-card" v-for="(task, index) in tasks" :key="index">
+         <TaskCard :id="index" :task="task" />
+       </div>
+     </div>
    </div>
   </div>
 </template>
 
 <script>
 import TaskForm from './TaskForm.vue'
+import TaskCard from './TaskCard.vue'
 export default {
   name: 'To-do',
   data() {
     return {
       add: 'add',
-      update: 'update'
+      update: 'update',
+      search: ''
+
     }
   },
   components: {
-    TaskForm
+    TaskForm,
+    TaskCard
+  },
+  computed: {
+    tasks() {
+      return this.$store.state.tasks
+    }
   }
+
 }
 </script>
 
@@ -44,6 +60,23 @@ li {
 }
 a {
   color: #42b983;
+}
+.search {
+   color: #000000;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    font-style: normal;
+    border: 1px solid #BDBDBD;
+    padding: 10px;
+    border-radius: 5px;
+    &::placeholder {
+      color: #000000;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 12px;
+      font-weight: normal;
+      font-style: normal;
+    }
 }
 .full-width {
   width: 100%;
@@ -72,4 +105,9 @@ a {
     
   }
 } 
+
+.task-card {
+  margin: 15px 0;
+}
+
 </style>
