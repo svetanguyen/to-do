@@ -39,7 +39,7 @@ export default {
             font-size: 12px;           
             text-align: center;
             cursor: pointer;
-            background: #2196F3;
+            background: #b53389;
             border: none;
             border-radius: 10px;
             display: inline-block;
@@ -47,7 +47,7 @@ export default {
             width: 110px;
             margin-right: 20px;
             &:last-child {
-                background: #D9534F;
+                background: #e30b5d;
                 margin: 0;
             }
         }

@@ -1,12 +1,12 @@
 <template>
   <div class="to-do-wrapper">
    <div class="new-task-wrapper column">
-     <h2 @click="toggleAccordeonOne">New task</h2>
+     <h2 @click="toggleAccordeonOne">New task <span :class="{rotated: openAccordeonOne}">▼</span></h2>
     <TaskForm class="accordeon-body" :class="{active: openAccordeonOne}" :submit="add" id="newTask" />
    </div>
    <div class="to-do-list column">
      <div class="header">
-     <h2 @click="toggleAccordeonTwo">To do list</h2>
+     <h2 @click="toggleAccordeonTwo">To do list <span :class="{rotated: openAccordeonTwo}">▼</span></h2>
      <div class="accordeon-body" :class="{active: openAccordeonTwo}">
       <input type="text" @input="searchTasks" @keyup="searchTasks" class="search full-width" v-model="search" placeholder="Search...">
         <div  class="tasks-wrapper">
@@ -144,6 +144,20 @@ a {
     text-align: center;
     text-transform: capitalize;
     font-weight: 600;
+    position: relative;
+   span {
+     transform: translateY(-50%);
+     transform-origin: 50% 50%;
+     display: inline-block;
+     font-size: 15px;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    &.rotated {
+     transform: translateY(-50%) rotate(180deg);
+    }
+
+   }
   }
   @media screen and (max-width: 748px) {
     height: 650px;  
@@ -152,7 +166,7 @@ a {
       &.active {
         display: block;
       }
-    }
+    }    
   }
   @media screen and (min-width: 749px) {
     display: flex;
@@ -161,7 +175,9 @@ a {
     }
     h2 {
       margin-bottom: 50px;
-
+      span {
+        display: none;
+      }
     }
     
   }

@@ -90,11 +90,11 @@ export default {
         cursor: pointer;
         height: 27px;
         margin-right: 20px;
-        background: #00BCD4;
+        background: #fbaed2;
         border: none;
         border-radius: 10px;
         &:last-child {
-            background: #D9534F;
+            background: #d10056;
             margin: 0;
         }
     }
