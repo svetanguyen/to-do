@@ -34,7 +34,8 @@ export default {
     data() {
         return {
            update: 'update',
-           detailsShown: false
+           detailsShown: false,
+           checked: this.task ? this.task.checked : false
         }
     },
     computed: {
@@ -47,11 +48,14 @@ export default {
             this.detailsShown = !this.detailsShown
         },
         checkCard: function() {
-            this.task.checked = !this.task.checked
-            console.log('this.task.checked', this.task.checked)
+            this.checked = !this.checked
         },
         removeTask: function() {
             this.$store.state.tasks.splice(this.id, 1)
+            this.saveToLocalStorage();
+        },
+         saveToLocalStorage() {
+            localStorage.setItem('tasks', JSON.stringify(this.$store.state.tasks))
         }
     }
 }

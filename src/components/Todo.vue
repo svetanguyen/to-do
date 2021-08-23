@@ -7,7 +7,7 @@
    <div class="to-do-list column">
      <div class="header">
      <h2>To do list</h2>
-      <input type="text" @change="searchTasks" class="search full-width" v-model="search" placeholder="Search...">
+      <input type="text" @input="searchTasks" @keyup="searchTasks" class="search full-width" v-model="search" placeholder="Search...">
       <div class="tasks-wrapper">
         <div class="task-card" v-for="(task, index) in tasks" :key="index">
           <TaskCard :id="index" :task="task" />
@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     searchTasks: function() {
-      this.tasks = this.$store.state.tasks.filter(item => item.title.includes(this.search))
+      this.tasks = this.$store.state.tasks.filter(item => item.title.toLowerCase().includes(this.search.toLowerCase()))
       .sort(function(a, b) {
         if (Date.parse(a.date) > Date.parse(b.date)) {
           return 1;

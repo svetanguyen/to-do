@@ -5,8 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-      tasks: [         
-      ]
+      tasks: localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : []
     },
     mutations: { 
         sort(state) {
@@ -19,7 +18,7 @@ export default new Vuex.Store({
                 }
                 return 0
               })
-        }     
+        }       
     },
     actions: {
     },

@@ -18,8 +18,10 @@ export default {
                     this.$store.state.tasks.splice(i, 1)
                 }
             }
+            this.saveToLocalStorage();
            
-        }
+        },
+       
     }
 }
 </script>
@@ -37,6 +39,7 @@ export default {
             font-family: Arimo;
             font-size: 12px;           
             text-align: center;
+            cursor: pointer;
             background: #2196F3;
             border: none;
             border-radius: 10px;

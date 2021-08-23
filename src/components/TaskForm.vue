@@ -32,7 +32,8 @@ export default {
       description: this.task ? this.task.description : '',
       date: this.task ? this.task.date : (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
       showCalendar: false,
-      priority: this.task ? this.task.priority : 'normal'
+      priority: this.task ? this.task.priority : 'normal',
+      checked: this.task ? this.task.checked : false
     }
   },
   props: ['submit', 'task', 'id'],  
@@ -116,7 +117,11 @@ export default {
         this.task.priority = this.priority
         this.task.checked = this.checked
       }
-      
+      this.$store.commit('sort')
+      this.saveToLocalStorage()
+    },
+    saveToLocalStorage() {
+      localStorage.setItem('tasks', JSON.stringify(this.$store.state.tasks))
     }
   }
 }
