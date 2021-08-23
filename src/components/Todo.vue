@@ -35,7 +35,17 @@ export default {
   },
   computed: {
     tasks() {
-      return this.$store.state.tasks
+      let sortedTasks = [...this.$store.state.tasks]
+      sortedTasks = sortedTasks.sort(function(a, b) {
+        if (Date.parse(a.date) > Date.parse(b.date)) {
+          return 1;
+        }
+        if (Date.parse(a.date) < Date.parse(b.date)) {
+          return -11;
+        }
+        return 0
+      })
+      return sortedTasks
     }
   }
 
