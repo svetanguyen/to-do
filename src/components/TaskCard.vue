@@ -121,4 +121,13 @@ export default {
         border: 1px solid #000;
         border-top: 0;
     }
+    @media screen and (max-width: 1008px) and (min-width: 749px) {
+        .task-content {
+            justify-content: center;
+            flex-direction: column;
+            .cta-buttons {
+                margin-top: 20px;
+            }
+        }
+    }
 </style>

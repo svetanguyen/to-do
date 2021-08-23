@@ -40,10 +40,7 @@ export default {
   computed: {   
     dateId() {
       return `DueDate--${this.id}`
-    },
-    themeColor() {
-      return this.$vuetify.theme.themes
-    },
+    },    
     descriptionId() {
       return `Description--${this.id}`
     },
@@ -184,6 +181,11 @@ input {
       font-size: 12px;
       height: 31px;
       border-radius: 0;
+      width: 100%;
+    }
+    
+    & + .half-width {
+     padding-left: 20px;
     }
   }
   .task-form {

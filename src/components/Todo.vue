@@ -1,21 +1,26 @@
 <template>
   <div class="to-do-wrapper">
    <div class="new-task-wrapper column">
-     <h2>New task</h2>
-    <TaskForm :submit="add" id="newTask" />
+     <h2 @click="toggleAccordeonOne">New task</h2>
+    <TaskForm class="accordeon-body" :class="{active: openAccordeonOne}" :submit="add" id="newTask" />
    </div>
    <div class="to-do-list column">
      <div class="header">
-     <h2>To do list</h2>
+     <h2 @click="toggleAccordeonTwo">To do list</h2>
+     <div class="accordeon-body" :class="{active: openAccordeonTwo}">
       <input type="text" @input="searchTasks" @keyup="searchTasks" class="search full-width" v-model="search" placeholder="Search...">
-      <div class="tasks-wrapper">
-        <div class="task-card" v-for="(task, index) in tasks" :key="index">
-          <TaskCard :id="index" :task="task" />
+        <div  class="tasks-wrapper">
+          <div class="task-card" v-for="(task, index) in tasks" :key="index">
+            <TaskCard :id="index" :task="task" />
+          </div>
+
         </div>
-      </div>
+     <BulkActions />
+
      </div>
      
-     <BulkActions />
+     </div>
+     
    </div>
   </div>
 </template>
@@ -31,14 +36,16 @@ export default {
       add: 'add',
       update: 'update',
       search: '',
-      tasks: this.$store.state.tasks
+      tasks: this.$store.state.tasks,
+      openAccordeonOne: false,
+      openAccordeonTwo: false
 
     }
   },
   components: {
     TaskForm,
     TaskCard,
-    BulkActions
+    BulkActions    
   },
   methods: {
     searchTasks: function() {
@@ -52,6 +59,12 @@ export default {
         }
         return 0
       })
+    },
+    toggleAccordeonOne: function() {
+      this.openAccordeonOne = !this.openAccordeonOne
+    },
+    toggleAccordeonTwo: function() {
+      this.openAccordeonTwo = !this.openAccordeonTwo
     }
   }
 
@@ -77,10 +90,24 @@ li {
 a {
   color: #42b983;
 }
-.to-do-list {
+.header {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+
+  .accordeon-body {    
+    .tasks-wrapper {
+      max-height: 78%;
+      margin-top: 20px;
+      overflow: scroll;
+       -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none; 
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+  
 }
 .search {
    color: #000000;
@@ -107,7 +134,8 @@ a {
 }
 .column {
   border: 1px solid #000;
-  padding: 50px;
+  padding: 10px;
+  position: relative;
 }
 .to-do-wrapper {
   h2 {
@@ -115,13 +143,25 @@ a {
     font-size: 18px;
     text-align: center;
     text-transform: capitalize;
-    margin-bottom: 50px;
     font-weight: 600;
+  }
+  @media screen and (max-width: 748px) {
+    height: 650px;  
+    .accordeon-body {
+      display: none;
+      &.active {
+        display: block;
+      }
+    }
   }
   @media screen and (min-width: 749px) {
     display: flex;
     &>div {
       width: 50%;
+    }
+    h2 {
+      margin-bottom: 50px;
+
     }
     
   }
@@ -129,6 +169,12 @@ a {
 
 .task-card {
   margin: 15px 0;
+}
+
+@media screen and (min-width: 749px)  {
+  .column {
+    padding: 50px;
+  }
 }
 
 </style>

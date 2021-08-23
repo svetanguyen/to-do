@@ -33,7 +33,6 @@ export default {
         align-items: center;
         background: #E0E0E0;
         padding: 10px;
-        margin: 0 -50px -50px;
         button {
             color: #FFFFFF;
             font-family: Arimo;
@@ -51,6 +50,13 @@ export default {
                 background: #D9534F;
                 margin: 0;
             }
+        }
+        @media screen and (min-width: 749px) {
+            margin: 0;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
         }
     }
 </style>
