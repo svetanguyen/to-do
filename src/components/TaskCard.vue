@@ -16,7 +16,7 @@
         
   </div>
   <div class="form-wrapper">
-    <TaskForm v-show="detailsShown" :task="task" :submit="update" />
+    <TaskForm :id="id" v-show="detailsShown" :task="task" :submit="update" />
 
   </div>
 </div>
@@ -26,7 +26,7 @@
 <script>
 import TaskForm from './TaskForm.vue';
 export default {
-    name: 'Task Card',
+    name: 'Task-card',
     props: ['task', 'id'],
     components: {
         TaskForm
@@ -107,7 +107,6 @@ export default {
         margin: 0;
     }
     .form-wrapper {
-        padding: 30px;
         border: 1px solid #000;
         border-top: 0;
     }
