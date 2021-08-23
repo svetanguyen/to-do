@@ -99,6 +99,12 @@ export default {
         this.date = (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
         this.priority = 'normal'
         this.checked = false  
+      } else {
+        this.task.title = this.title
+        this.task.description = this.description
+        this.task.date = this.date
+        this.task.priority = this.priority
+        this.task.checked = this.checked
       }
       
     }
