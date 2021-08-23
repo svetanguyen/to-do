@@ -30,9 +30,9 @@ export default {
     return {
       title: this.task ? this.task.title : '',
       description: this.task ? this.task.description : '',
-      date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      date: this.task ? this.task.date : (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
       showCalendar: false,
-      priority: 'normal'
+      priority: this.task ? this.task.priority : 'normal'
     }
   },
   props: ['submit', 'task', 'id'],  

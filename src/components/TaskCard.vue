@@ -2,7 +2,7 @@
 <div class="task-item">
     <div class="task-content">
       <div class="name-wrapper">
-        <input :id="inputId" type="checkbox" v-model="task.checked">
+        <input :id="inputId" type="checkbox" @input="checkCard" v-model="task.checked">
         <label :for="inputId">
             <span v-show="task.checked">✔</span>
         </label>
@@ -45,6 +45,10 @@ export default {
     methods: {
         showDetails: function() {
             this.detailsShown = !this.detailsShown
+        },
+        checkCard: function() {
+            this.task.checked = !this.task.checked
+            console.log('this.task.checked', this.task.checked)
         }
     }
 }
