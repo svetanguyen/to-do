@@ -88,7 +88,7 @@ a {
 
   .accordeon-body {    
     .tasks-wrapper {
-      max-height: 78%;
+      height: 85%;
       margin-top: 20px;
       overflow: scroll;
        -ms-overflow-style: none;  /* IE and Edge */
@@ -161,6 +161,9 @@ a {
   }
   @media screen and (min-width: 749px) {
     display: flex;
+    .column {
+      min-height: 100vh;
+    }
     &>div {
       width: 50%;
     }
