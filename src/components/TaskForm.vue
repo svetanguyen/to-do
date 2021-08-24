@@ -164,7 +164,7 @@ input {
   }
   button.full-width {
     text-transform: capitalize;
-    background: #ff69b4;
+    background: #5CB85C;
     color: #fff;
     border-radius: 10px;
     border: none;
