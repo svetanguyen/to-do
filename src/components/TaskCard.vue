@@ -86,10 +86,10 @@ export default {
         font-size: 12px;
         font-weight: normal;
         font-style: normal;
-        width: 93px;
+        width: 74px;
         cursor: pointer;
         height: 27px;
-        margin-right: 20px;
+        margin-right: 10px;
         background: #00BCD4;
         border: none;
         border-radius: 10px;
@@ -120,7 +120,16 @@ export default {
     .form-wrapper {
         border: 1px solid #000;
         border-top: 0;
-    }
+    }    
+    @media screen and (max-width: 748px) {
+         .task-content {
+             flex-wrap: wrap;
+         }
+         .name-wrapper {
+             width: 100%;
+             margin-bottom: 20px;
+         }
+     } 
     @media screen and (max-width: 1139px) and (min-width: 749px) {
         .task-content {
             justify-content: center;
@@ -128,6 +137,13 @@ export default {
             .cta-buttons {
                 margin-top: 20px;
             }
+        }
+    }
+    @media screen and (min-width: 749px) {
+        button {
+            width: 93px;
+          margin-right: 20px;
+
         }
     }
 </style>
